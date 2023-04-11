@@ -14,9 +14,9 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 filename = 'words.csv'
 with open(os.path.join(current_dir, filename), newline='') as csvfile:
     reader = csv.reader(csvfile)
-    wordlist = list(reader)[0]
-word = random.choice(wordlist)
-
+    wordlist = list(reader)
+# Choose word from random index
+word = random.choice(wordlist)[0]
 # Filling the correct letters list
 for c in word:
     cor_letters.append(c)
@@ -24,6 +24,8 @@ for c in word:
 # Filling in correct guesses list
 for c in word:
     cor_guess.append("_")
+
+print(' '.join(cor_guess))
 
 while cor_guess != cor_letters:
     if amount_of_guesses == 0:
@@ -40,7 +42,8 @@ while cor_guess != cor_letters:
         hangman = "  O\n /|\\\n/ | \\\n /\n/"
     if amount_of_guesses < 6:
         print(hangman)
-        print("Wrong guesses: ", ", ".join(wrong_guess))
+        if wrong_guess != []:
+            print("Wrong guesses: ", ", ".join(wrong_guess))
         letter = input("Guess a letter: ")
         letter = letter.lower()
         if len(letter) != 1 or not letter.isalpha():
