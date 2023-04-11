@@ -25,8 +25,6 @@ for c in word:
 for c in word:
     cor_guess.append("_")
 
-print(' '.join(cor_guess))
-
 while cor_guess != cor_letters:
     if amount_of_guesses == 0:
         pass
@@ -41,6 +39,9 @@ while cor_guess != cor_letters:
     elif amount_of_guesses == 5:
         hangman = "  O\n /|\\\n/ | \\\n /\n/"
     if amount_of_guesses < 6:
+        # Clear the console
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(' '.join(cor_guess))
         print(hangman)
         if wrong_guess != []:
             print("Wrong guesses: ", ", ".join(wrong_guess))
